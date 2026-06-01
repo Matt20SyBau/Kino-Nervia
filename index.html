@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kino-Nervia | Fisioterapia & Bienestar Premium a Domicilio</title>
-    <!-- Cargar FontAwesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Header / Navbar -->
     <header class="navbar">
         <div class="logo-container">
             <span class="brand-name">KINO<span class="accent">NERVIA</span></span>
@@ -23,7 +21,6 @@
         </nav>
     </header>
 
-    <!-- Hero Section con Degradado Premium -->
     <section id="inicio" class="hero">
         <div class="hero-content">
             <h1>Recupera tu bienestar, reserva hoy</h1>
@@ -32,22 +29,20 @@
         </div>
     </section>
 
-    <!-- Sistema de Reserva de Citas -->
     <section id="reserva" class="booking-section">
         <div class="container">
             <h2>Sistema de Reserva de Citas</h2>
             <p class="subtitle">Completa los pasos para asegurar tu atención profesional</p>
 
-            <!-- Progress Bar -->
             <div class="progress-bar">
                 <div class="step active" id="p-step-1"><span>1</span> Datos</div>
                 <div class="step" id="p-step-2"><span>2</span> Servicio</div>
                 <div class="step" id="p-step-3"><span>3</span> Agenda</div>
-                <div class="step" id="p-step-4"><span>4</span> Garantía</div>
+                <div class="step" id="p-step-4"><span>4</span> Pago</div>
             </div>
-            <form id="bookingForm" action="https://formspree.io/f/mpqngqgd" method="POST" enctype="multipart/form-data">
+
+            <form id="bookingForm" action="https://formspree.io/f/mpqngqgd" method="POST">
                 
-                <!-- PASO 1: Datos Personales y Seguridad -->
                 <div class="form-step step-1 active" id="step-1">
                     <h3>1. Información del Paciente y Ubicación</h3>
                     <div class="form-group">
@@ -81,7 +76,6 @@
                     </div>
                 </div>
 
-                <!-- PASO 2: Selección de Servicio (AQUÍ ESTABA EL ERROR) -->
                 <div class="form-step step-2" id="step-2">
                     <h3>2. Selecciona tu Terapia</h3>
                     <div class="services-grid">
@@ -116,7 +110,6 @@
                     </div>
                 </div>
 
-                <!-- PASO 3: Fecha y Hora -->
                 <div class="form-step step-3" id="step-3">
                     <h3>3. Fecha y Horario de Atención</h3>
                     <p class="info-text">Tomamos un margen de tiempo entre citas para garantizar la puntualidad ante el tráfico urbano.</p>
@@ -143,7 +136,6 @@
                     </div>
                 </div>
 
-                <!-- PASO 4: Depósito de Garantía del 50% -->
                 <div class="form-step step-4" id="step-4">
                     <h3>4. Confirmación y Garantía de Reserva</h3>
                     <div class="summary-box">
@@ -164,7 +156,7 @@
 
                         <div id="payment-yape" class="payment-info-content active">
                             <p>Realiza el envío al número:</p>
-                            <p class="payment-detail"><strong>987 654 321</strong></p>
+                            <p class="payment-detail"><strong>955 111 294</strong></p>
                             <p class="payment-holder">Titular: Kino-Nervia</p>
                         </div>
 
@@ -174,12 +166,6 @@
                             <p class="payment-detail">CCI: <strong>002-191XXXXXXXXXX-XX</strong></p>
                             <p class="payment-holder">Titular: Kino-Nervia</p>
                         </div>
-                    </div>
-
-                    <div class="form-group upload-section">
-                        <br>
-                        <label for="voucher">Sube la captura de pantalla de tu comprobante (Voucher) *</label>
-                        <input type="file" id="voucher" name="comprobante" accept="image/*" required>
                     </div>
 
                     <div class="form-buttons">
@@ -192,7 +178,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: Tu Proceso de Recuperación Paso a Paso -->
     <section id="proceso" class="process-section">
         <div class="container">
             <h2>Tu proceso de recuperación, paso a paso</h2>
@@ -244,7 +229,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2026 Kino-Nervia. Servicio de fisioterapia premium a domicilio.</p>
     </footer>
