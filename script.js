@@ -1,6 +1,5 @@
 // Navegación entre pasos con validación estricta
 function nextStep(current, next) {
-    // Validar campos obligatorios del paso actual antes de avanzar
     const currentStepDiv = document.getElementById(`step-${current}`);
     const inputs = currentStepDiv.querySelectorAll('input[required], textarea[required], select[required]');
     
@@ -8,13 +7,12 @@ function nextStep(current, next) {
     inputs.forEach(input => {
         if (!input.value) {
             allValid = false;
-            input.style.borderColor = "#C0392B"; // Alerta visual roja
+            input.style.borderColor = "#C0392B"; 
         } else {
             input.style.borderColor = "#D1D8D5";
         }
     });
 
-    // Validar específicamente que se haya seleccionado un servicio en el paso 2
     if (current === 2) {
         const serviceSelected = document.querySelector('input[name="servicio"]:checked');
         if (!serviceSelected) {
@@ -28,18 +26,14 @@ function nextStep(current, next) {
         return;
     }
 
-    // Cambiar de panel activo
     document.getElementById(`step-${current}`).classList.remove('active');
     document.getElementById(`step-${next}`).classList.add('active');
-
-    // Cambiar indicador en barra de progreso
     document.getElementById(`p-step-${next}`).classList.add('active');
 }
 
 function prevStep(current, prev) {
     document.getElementById(`step-${current}`).classList.remove('active');
     document.getElementById(`step-${prev}`).classList.add('active');
-    
     document.getElementById(`p-step-${current}`).classList.remove('active');
 }
 
@@ -49,9 +43,8 @@ function calculatePrices() {
     if (selectedRadio) {
         const serviceName = selectedRadio.value;
         const totalPrice = parseFloat(selectedRadio.getAttribute('data-price'));
-        const advancePrice = totalPrice * 0.50; // Cálculo exacto del 50%
+        const advancePrice = totalPrice * 0.50; 
 
-        // Inyectar datos en la interfaz del Paso 4
         document.getElementById('summary-service').innerText = serviceName;
         document.getElementById('summary-total').innerText = `S/ ${totalPrice.toFixed(2)}`;
         document.getElementById('summary-advance').innerText = `S/ ${advancePrice.toFixed(2)}`;
@@ -60,11 +53,9 @@ function calculatePrices() {
 
 // Switcher para los métodos de pago dinámicos (Yape vs BCP)
 function switchPayment(method) {
-    // Quitar estados activos de pestañas
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.payment-info-content').forEach(info => info.classList.remove('active'));
 
-    // Activar correspondiente
     if (method === 'yape') {
         document.querySelector('.tab-btn[onclick*="yape"]').classList.add('active');
         document.getElementById('payment-yape').classList.add('active');
@@ -76,19 +67,17 @@ function switchPayment(method) {
 
 // --- ENVÍO ASÍNCRONO DEL FORMULARIO CON FORMSPREE ---
 document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Evita que la página se recargue
+    e.preventDefault(); 
     
     const form = e.target;
-    const data = new FormData(form); // Captura todos los textos y LA FOTO
+    const data = new FormData(form); 
     const submitBtn = document.querySelector('.btn-submit');
     
-    // Cambiar estado del botón mientras carga
     const originalText = submitBtn.innerText;
     submitBtn.innerText = "Procesando reserva...";
     submitBtn.disabled = true;
-    submitBtn.style.backgroundColor = "#555"; // Color gris de carga
+    submitBtn.style.backgroundColor = "#555"; 
 
-    // Enviar datos al servidor
     fetch(form.action, {
         method: form.method,
         body: data,
@@ -97,9 +86,9 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
         }
     }).then(response => {
         if (response.ok) {
-            // Éxito: Marcar la línea de tiempo y avisar al cliente
-            alert("¡Solicitud enviada con éxito! Validaremos tu voucher y confirmaremos tu cita vía WhatsApp en breve.");
-            form.reset(); // Limpiar el formulario
+            // Mensaje actualizado pidiendo el voucher por WhatsApp
+            alert("¡Solicitud recibida! Te escribiremos por WhatsApp en unos minutos para que nos envíes la foto de tu voucher y confirmar la cita.");
+            form.reset(); 
             
             // Volver al paso 1 visualmente
             document.querySelectorAll('.form-step').forEach(step => step.classList.remove('active'));
@@ -113,7 +102,6 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
     }).catch(error => {
         alert("Error de conexión. Verifica tu internet e intenta nuevamente.");
     }).finally(() => {
-        // Restaurar el botón
         submitBtn.innerText = originalText;
         submitBtn.disabled = false;
         submitBtn.style.backgroundColor = "var(--gradient-end)";
