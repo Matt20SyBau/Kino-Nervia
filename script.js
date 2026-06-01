@@ -74,11 +74,48 @@ function switchPayment(method) {
     }
 }
 
-// Captura del Submit Final
+// --- ENVÍO ASÍNCRONO DEL FORMULARIO CON FORMSPREE ---
 document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    e.preventDefault(); // Evita que la página se recargue
     
-    // Aquí puedes procesar el envío de datos mediante fetch() a un endpoint backend 
-    // o integrarlo con servicios de correo directo para estáticos (ej: Formspree, EmailJS)
-    alert("¡Solicitud enviada con éxito! Validaremos tu voucher de pago y confirmaremos tu cita vía WhatsApp en un plazo de 15 minutos.");
+    const form = e.target;
+    const data = new FormData(form); // Captura todos los textos y LA FOTO
+    const submitBtn = document.querySelector('.btn-submit');
+    
+    // Cambiar estado del botón mientras carga
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = "Procesando reserva...";
+    submitBtn.disabled = true;
+    submitBtn.style.backgroundColor = "#555"; // Color gris de carga
+
+    // Enviar datos al servidor
+    fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            // Éxito: Marcar la línea de tiempo y avisar al cliente
+            alert("¡Solicitud enviada con éxito! Validaremos tu voucher y confirmaremos tu cita vía WhatsApp en breve.");
+            form.reset(); // Limpiar el formulario
+            
+            // Volver al paso 1 visualmente
+            document.querySelectorAll('.form-step').forEach(step => step.classList.remove('active'));
+            document.querySelectorAll('.step').forEach(indicator => indicator.classList.remove('active'));
+            document.getElementById('step-1').classList.add('active');
+            document.getElementById('p-step-1').classList.add('active');
+            
+        } else {
+            alert("Hubo un problema al procesar tu reserva. Por favor, intenta de nuevo.");
+        }
+    }).catch(error => {
+        alert("Error de conexión. Verifica tu internet e intenta nuevamente.");
+    }).finally(() => {
+        // Restaurar el botón
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.backgroundColor = "var(--gradient-end)";
+    });
 });
