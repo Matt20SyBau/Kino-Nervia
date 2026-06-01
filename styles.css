@@ -1,15 +1,10 @@
-/* Paleta de colores Premium Kino-Nervia (Inspirada en image_1.png/image_3.png) */
 :root {
-    /* Degradado principal (Estilo image_1.png) */
-    --gradient-start: #003131;    /* Azul-Verde profundo */
-    --gradient-end: #0a5252;      /* Verde esmeralda claro */
-    --hero-dark-overlay: rgba(0, 49, 49, 0.5); /* Overlay para texto */
-    
-    /* Colores acento y estado (Estilo image_3.png) */
-    --accent-gold: #D4AF37;       /* Dorado sutil */
-    --accent-teal: #05f1f1;       /* Verde-azul brillante para checks y botones */
-    --dark: #003131;              /* Gris Carbón Oscuro (Casi negro) */
-    --light-bg: #F5F7F6;          /* Fondo suave nítido */
+    --gradient-start: #003131;    
+    --gradient-end: #0a5252;      
+    --accent-gold: #D4AF37;       
+    --accent-teal: #05f1f1;       
+    --dark: #003131;              
+    --light-bg: #F5F7F6;          
     --white: #FFFFFF;
     --border-color: #D1D8D5;
 }
@@ -28,7 +23,7 @@ body {
 }
 
 .container {
-    max-width: 1000px; /* Un poco más ancho para la línea de tiempo */
+    max-width: 1000px; 
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -54,7 +49,7 @@ body {
 }
 
 .brand-name .accent {
-    color: var(--gradient-end); /* Usar el verde de la marca */
+    color: var(--gradient-end); 
 }
 
 nav a {
@@ -76,47 +71,28 @@ nav a:hover {
     border-radius: 4px;
 }
 
-.btn-nav:hover {
-    background-color: #0c4d4d;
-}
-
-/* Hero Section con Degradado Premium (Estilo image_1.png) */
+/* Hero Section */
 .hero {
-    /* Degradado profundo como en image_1.png */
     background: linear-gradient(var(--gradient-start), var(--gradient-end));
-    height: 70vh; /* Un poco más alto */
+    height: 60vh; 
     display: flex;
-    justify-content: flex-start; /* Contenido a la izquierda */
+    justify-content: flex-start; 
     align-items: center;
-    text-align: left; /* Texto alineado a la izquierda */
+    text-align: left; 
     color: var(--white);
     padding: 0 5%;
     position: relative;
     overflow: hidden;
 }
 
-/* Imagen Placeholder Profesional (simulando image_1.png, luego la cambias por la tuya) */
-.hero::after {
-    content: "";
-    position: absolute;
-    right: -5%; /* Reubicar la imagen a la derecha */
-    bottom: -10%;
-    width: 60%;
-    height: 90%;
-    /* Reemplazar url() con la imagen profesional real */
-    background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200') no-repeat center bottom/cover;
-    opacity: 0.8; /* Transparencia para que el degradado se mezcle */
-    z-index: 1;
-}
-
 .hero-content {
     max-width: 500px;
-    z-index: 2; /* Texto sobre la imagen y el degradado */
+    z-index: 2; 
     position: relative;
 }
 
 .hero-content h1 {
-    font-size: 48px; /* Título más grande */
+    font-size: 48px; 
     margin-bottom: 20px;
     font-weight: 700;
 }
@@ -128,21 +104,17 @@ nav a:hover {
 }
 
 .btn-primary {
-    background-color: var(--white); /* Botón claro sobre fondo oscuro */
+    background-color: var(--white); 
     color: var(--dark);
     text-decoration: none;
     padding: 12px 30px;
     font-weight: 600;
     border-radius: 4px;
-    transition: background 0.3s;
+    display: inline-block;
 }
 
-.btn-primary:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-/* Booking Section (Formulario Progresivo) */
-.booking-section {
+/* Booking Section */
+.booking-section, .process-section {
     padding: 60px 0;
 }
 
@@ -159,7 +131,7 @@ nav a:hover {
     margin-bottom: 40px;
 }
 
-/* Barra de Progreso del Formulario (Parte Operativa, no cambiar) */
+/* Barra de Progreso */
 .progress-bar {
     display: flex;
     justify-content: space-between;
@@ -173,7 +145,6 @@ nav a:hover {
     font-size: 14px;
     font-weight: 600;
     color: #aaa;
-    position: relative;
 }
 
 .step span {
@@ -195,7 +166,7 @@ nav a:hover {
     background-color: var(--gradient-end);
 }
 
-/* Estilos de los Pasos del Formulario (no cambiar) */
+/* Estructura del Formulario */
 .form-step {
     background-color: var(--white);
     padding: 40px;
@@ -208,14 +179,172 @@ nav a:hover {
     display: block;
 }
 
-/* ... (restos de los estilos del formulario idénticos, no cambiarlos) ... */
-
-/* PASOS DE REFUERZO DE CONFIRMACIÓN - ESTILOS NUEVOS (Inspirado en image_2.png/image_3.png) */
-.process-section {
-    padding: 80px 0;
+.form-step h3 {
+    margin-bottom: 25px;
+    font-size: 20px;
+    border-left: 4px solid var(--gradient-end);
+    padding-left: 10px;
 }
 
-/* Contenedor principal de la línea de tiempo horizontal */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: #FAFAFA;
+}
+
+/* Tarjetas de Servicio */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.service-card {
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    transition: all 0.3s;
+}
+
+.service-card input[type="radio"] {
+    margin-top: 5px;
+    accent-color: var(--gradient-end);
+}
+
+.service-card:hover {
+    border-color: var(--gradient-end);
+    background-color: #F9FBF9;
+}
+
+.service-card input[type="radio"]:checked + .card-content h4 {
+    color: var(--gradient-end);
+}
+
+.service-card input[type="radio"]:checked ~ .card-content .price {
+    background-color: var(--gradient-end);
+    color: var(--white);
+}
+
+/* Resumen y Pagos */
+.summary-box {
+    background-color: #F4F6F5;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+.alert-advance {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.highlight {
+    font-size: 20px;
+    font-weight: 700;
+    color: #C0392B;
+}
+
+.sub-alert {
+    font-size: 12px;
+    color: #777;
+    margin-top: 5px;
+}
+
+.methods-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    background-color: #EEE;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.tab-btn.active {
+    background-color: var(--dark);
+    color: var(--white);
+    border-color: var(--dark);
+}
+
+.payment-info-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: #FAFAFA;
+    margin-bottom: 25px;
+}
+
+.payment-info-content.active {
+    display: block;
+}
+
+/* Botones del Formulario */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+button.btn-next, button.btn-submit {
+    background-color: var(--gradient-end);
+    color: var(--white);
+    border: none;
+    padding: 12px 25px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+button.btn-prev {
+    background-color: #E0E0E0;
+    color: var(--dark);
+    border: none;
+    padding: 12px 25px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Línea de Tiempo de Proceso */
 .timeline-container {
     display: flex;
     justify-content: space-between;
@@ -224,99 +353,96 @@ nav a:hover {
     padding-bottom: 20px;
 }
 
-/* Línea de tiempo horizontal progresiva */
 .timeline-line {
     position: absolute;
-    top: 30px; /* Centrado verticalmente con los iconos */
+    top: 30px; 
     left: 5%;
     right: 5%;
     height: 4px;
-    background-color: #ddd; /* Línea inactiva */
+    background-color: #ddd; 
     z-index: 1;
 }
 
-/* Línea de tiempo progresiva ACTIVA (Estilo image_3.png) */
-.timeline-line::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 0%; /* Porcentaje de progreso de la línea, se actualiza luego */
-    background-color: var(--accent-teal); /* Color progresivo verde brillante */
-    transition: width 0.5s ease;
-}
-
-/* Un Paso Individual de la Línea de Tiempo */
 .timeline-step {
     flex: 1;
     text-align: center;
     position: relative;
-    z-index: 2; /* Sobre la línea */
+    z-index: 2; 
 }
 
-/* Icono del Paso (Estilo image_2.png) */
 .step-icon {
     display: block;
     width: 60px;
     height: 60px;
-    background-color: #ddd; /* Fondo inactivo */
+    background-color: #ddd; 
     border-radius: 50%;
     margin: 0 auto 15px auto;
-    color: #888; /* Icono inactivo */
+    color: #888; 
     font-size: 24px;
     line-height: 60px;
     position: relative;
-    transition: all 0.3s ease;
 }
 
-/* El Check Mark verde neón (Estilo image_3.png) */
 .step-icon .check-mark {
     position: absolute;
     bottom: -5px;
     right: -5px;
-    background-color: var(--accent-teal); /* Color check verde brillante */
+    background-color: var(--accent-teal); 
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    color: var(--white);
+    color: var(--dark);
     font-size: 14px;
     line-height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: none; /* Oculto por defecto */
+    display: none; 
 }
 
-/* Texto del Paso */
 .timeline-step p {
     font-size: 14px;
-    color: #666; /* Texto inactivo */
+    color: #666; 
     max-width: 150px;
     margin: 0 auto;
     font-weight: 500;
 }
 
-/* ESTADO: PASO COMPLETADO (Aplica a los primeros pasos de image_3.png) */
 .timeline-step.step-complete p {
-    color: var(--dark); /* Texto activo */
+    color: var(--dark); 
     font-weight: 600;
 }
 
 .timeline-step.step-complete .step-icon {
-    background-color: var(--gradient-end); /* Fondo activo verde Kino */
-    color: var(--white); /* Icono activo */
+    background-color: var(--gradient-end); 
+    color: var(--white); 
 }
 
 .timeline-step.step-complete .step-icon .check-mark {
-    display: flex; /* Mostrar el check verde neón */
+    display: flex; 
 }
 
-/* Footer Simple */
+/* Footer */
 .footer {
     padding: 30px;
     text-align: center;
     background-color: var(--white);
     border-top: 1px solid var(--border-color);
+}
+
+/* Hacerlo responsive para celular */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .timeline-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    .timeline-line {
+        display: none; /* Oculta la línea horizontal en celular */
+    }
 }
