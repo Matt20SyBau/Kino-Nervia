@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kino-Nervia | Fisioterapia & Bienestar Premium a Domicilio</title>
+    <!-- Cargar FontAwesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <!-- Header / Navbar -->
     <header class="navbar">
         <div class="logo-container">
             <span class="brand-name">KINO<span class="accent">NERVIA</span></span>
@@ -21,6 +23,7 @@
         </nav>
     </header>
 
+    <!-- Hero Section con Degradado Premium -->
     <section id="inicio" class="hero">
         <div class="hero-content">
             <h1>Recupera tu bienestar, reserva hoy</h1>
@@ -29,11 +32,13 @@
         </div>
     </section>
 
+    <!-- Sistema de Reserva de Citas -->
     <section id="reserva" class="booking-section">
         <div class="container">
             <h2>Sistema de Reserva de Citas</h2>
             <p class="subtitle">Completa los pasos para asegurar tu atención profesional</p>
 
+            <!-- Progress Bar -->
             <div class="progress-bar">
                 <div class="step active" id="p-step-1"><span>1</span> Datos</div>
                 <div class="step" id="p-step-2"><span>2</span> Servicio</div>
@@ -41,8 +46,10 @@
                 <div class="step" id="p-step-4"><span>4</span> Pago</div>
             </div>
 
+            <!-- FORMULARIO CON FORMSPREE -->
             <form id="bookingForm" action="https://formspree.io/f/mpqngqgd" method="POST">
                 
+                <!-- PASO 1: Datos Personales y Seguridad -->
                 <div class="form-step step-1 active" id="step-1">
                     <h3>1. Información del Paciente y Ubicación</h3>
                     <div class="form-group">
@@ -76,31 +83,32 @@
                     </div>
                 </div>
 
+                <!-- PASO 2: Selección de Servicio -->
                 <div class="form-step step-2" id="step-2">
                     <h3>2. Selecciona tu Terapia</h3>
                     <div class="services-grid">
                         <label class="service-card">
-                            <input type="radio" name="servicio" value="Fisioterapia Integral" data-price="140" onchange="calculatePrices()" required>
+                            <input type="radio" name="servicio" value="Terapia Básica y Relajación" data-price="80" onchange="calculatePrices()" required>
                             <div class="card-content">
-                                <h4>Fisioterapia Integral</h4>
-                                <p>Evaluación, terapia manual y electroestimulación (TENS/EMS) avanzada.</p>
-                                <span class="price">S/ 140.00</span>
+                                <h4>Terapia Básica y Relajación</h4>
+                                <p>Terapia con aceites esenciales para liberación de estrés muscular, fatiga y relajación general.</p>
+                                <span class="price">S/ 80.00</span>
                             </div>
                         </label>
                         <label class="service-card">
-                            <input type="radio" name="servicio" value="Descarga Muscular" data-price="160" onchange="calculatePrices()">
+                            <input type="radio" name="servicio" value="Descarga Deportiva Premium" data-price="120" onchange="calculatePrices()">
                             <div class="card-content">
                                 <h4>Descarga Deportiva Premium</h4>
-                                <p>Especial para atletas. Incluye masaje profundo, aceites analgésicos y electrodos.</p>
-                                <span class="price">S/ 160.00</span>
+                                <p>Especial para atletas y deportistas. Incluye masaje profundo, liberación miofascial y electrodos (TENS/EMS).</p>
+                                <span class="price">S/ 120.00</span>
                             </div>
                         </label>
                         <label class="service-card">
-                            <input type="radio" name="servicio" value="Masaje Relajante" data-price="120" onchange="calculatePrices()">
+                            <input type="radio" name="servicio" value="Rehabilitación y Lesiones Graves" data-price="140" onchange="calculatePrices()">
                             <div class="card-content">
-                                <h4>Masaje Descontracturante & Relax</h4>
-                                <p>Terapia con aceites esenciales naturales para liberación de estrés acumulado.</p>
-                                <span class="price">S/ 120.00</span>
+                                <h4>Rehabilitación Integral</h4>
+                                <p>Enfocado en adultos mayores, lesiones severas o recuperación post-caídas. Fisioterapia para recuperar movilidad.</p>
+                                <span class="price">S/ 140.00</span>
                             </div>
                         </label>
                     </div>
@@ -110,6 +118,7 @@
                     </div>
                 </div>
 
+                <!-- PASO 3: Fecha y Hora -->
                 <div class="form-step step-3" id="step-3">
                     <h3>3. Fecha y Horario de Atención</h3>
                     <p class="info-text">Tomamos un margen de tiempo entre citas para garantizar la puntualidad ante el tráfico urbano.</p>
@@ -136,6 +145,7 @@
                     </div>
                 </div>
 
+                <!-- PASO 4: Depósito de Garantía del 50% -->
                 <div class="form-step step-4" id="step-4">
                     <h3>4. Confirmación y Garantía de Reserva</h3>
                     <div class="summary-box">
@@ -178,6 +188,7 @@
         </div>
     </section>
 
+    <!-- SECCIÓN: Tu Proceso de Recuperación Paso a Paso -->
     <section id="proceso" class="process-section">
         <div class="container">
             <h2>Tu proceso de recuperación, paso a paso</h2>
@@ -229,6 +240,12 @@
         </div>
     </section>
 
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/51955111294?text=Hola,%20vengo%20de%20la%20página%20web%20y%20quisiera%20más%20información%20sobre%20las%20terapias." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2026 Kino-Nervia. Servicio de fisioterapia premium a domicilio.</p>
     </footer>
