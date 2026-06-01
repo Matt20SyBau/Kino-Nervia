@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisioterapia & Bienestar Premium a Domicilio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-container">
+            <span class="brand-name">FISIO<span class="accent">HOME</span></span>
+        </div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#reserva" class="btn-nav">Reservar Cita</a>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Fisioterapia de Alta Gama en la Comodidad de tu Hogar</h1>
+            <p>Terapeutas especializados, equipos de electroestimulación avanzados y aceites esenciales premium directo a tu puerta.</p>
+            <a href="#reserva" class="btn-primary">Agendar Sesión</a>
+        </div>
+    </section>
+
+    <section id="reserva" class="booking-section">
+        <div class="container">
+            <h2>Sistema de Reserva de Citas</h2>
+            <p class="subtitle">Completa los pasos para asegurar tu atención profesional</p>
+
+            <div class="progress-bar">
+                <div class="step active" id="p-step-1"><span>1</span> Datos</div>
+                <div class="step" id="p-step-2"><span>2</span> Servicio</div>
+                <div class="step" id="p-step-3"><span>3</span> Agenda</div>
+                <div class="step" id="p-step-4"><span>4</span> Garantía</div>
+            </div>
+
+            <form id="bookingForm" enctype="multipart/form-data">
+                
+                <div class="form-step step-1 active" id="step-1">
+                    <h3>1. Información del Paciente y Ubicación</h3>
+                    <div class="form-group">
+                        <label for="fullName">Nombre Completo *</label>
+                        <input type="text" id="fullName" name="nombre" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dni">DNI / CE *</label>
+                            <input type="text" id="dni" name="dni" maxlength="12" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono Móvil *</label>
+                            <input type="tel" id="phone" name="telefono" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Dirección Exacta (Destino del servicio) *</label>
+                        <input type="text" id="address" name="direccion" placeholder="Av, Calle, Número, Dpto..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reference">Referencia de Ubicación *</label>
+                        <input type="text" id="reference" name="referencia" placeholder="Frente a parque, portón verde, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="condition">Descripción de la dolencia o motivo de consulta *</label>
+                        <textarea id="condition" name="condicion_medica" rows="3" placeholder="Ej: Dolor lumbar crónico, descarga muscular post-maratón..." required></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-next" onclick="nextStep(1, 2)">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="form-step step-2" id="step-2">
+                    <h3>2. Selecciona tu Terapia</h3>
+                    <div class="services-grid">
+                        <label class="service-card">
+                            <input type="radio" name="servicio" value="Fisioterapia Integral" data-price="140" onchange="calculatePrices()" required>
+                            <div class="card-content">
+                                <h4>Fisioterapia Integral</h4>
+                                <p>Evaluación, terapia manual y electroestimulación (TENS/EMS) avanzada.</p>
+                                <span class="price">S/ 140.00</span>
+                            </div>
+                        </label>
+                        <label class="service-card">
+                            <input type="radio" name="servicio" value="Descarga Muscular" data-price="160" onchange="calculatePrices()">
+                            <div class="card-content">
+                                <h4>Descarga Deportiva Premium</h4>
+                                <p>Especial para atletas. Incluye masaje profundo, aceites analgésicos y electrodos.</p>
+                                <span class="price">S/ 160.00</span>
+                            </div>
+                        </label>
+                        <label class="service-card">
+                            <input type="radio" name="servicio" value="Masaje Relajante" data-price="120" onchange="calculatePrices()">
+                            <div class="card-content">
+                                <h4>Masaje Descontracturante & Relax</h4>
+                                <p>Terapia con aceites esenciales naturales para liberación de estrés acumulado.</p>
+                                <span class="price">S/ 120.00</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-prev" onclick="prevStep(2, 1)">Atrás</button>
+                        <button type="button" class="btn-next" onclick="nextStep(2, 3)">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="form-step step-3" id="step-3">
+                    <h3>3. Fecha y Horario de Atención</h3>
+                    <p class="info-text">Tomamos un margen de tiempo entre citas para garantizar la puntualidad ante el tráfico urbano.</p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Seleccionar Fecha *</label>
+                            <input type="date" id="date" name="fecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Horarios Disponibles *</label>
+                            <select id="time" name="hora" required>
+                                <option value="">-- Selecciona un bloque --</option>
+                                <option value="08:00 - 10:00">08:00 AM - 10:00 AM</option>
+                                <option value="10:30 - 12:30">10:30 AM - 12:30 PM</option>
+                                <option value="14:00 - 16:00">02:00 PM - 04:00 PM</option>
+                                <option value="16:30 - 18:30">04:30 PM - 06:30 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-prev" onclick="prevStep(3, 2)">Atrás</button>
+                        <button type="button" class="btn-next" onclick="nextStep(3, 4)">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="form-step step-4" id="step-4">
+                    <h3>4. Confirmación y Garantía de Reserva</h3>
+                    <div class="summary-box">
+                        <p><strong>Servicio seleccionado:</strong> <span id="summary-service">-</span></p>
+                        <p><strong>Costo Total:</strong> <span id="summary-total">S/ 0.00</span></p>
+                        <div class="alert-advance">
+                            <p><strong>Adelanto requerido (50%):</strong> <span id="summary-advance" class="highlight">S/ 0.00</span></p>
+                            <p class="sub-alert">Para asegurar la logística de traslado de equipos, se requiere el adelanto. El saldo se cancela al finalizar la terapia.</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <h4>Métodos de Pago Autorizados</h4>
+                        <div class="methods-tabs">
+                            <button type="button" class="tab-btn active" onclick="switchPayment('yape')">Yape / Plin</button>
+                            <button type="button" class="tab-btn" onclick="switchPayment('bcp')">Banco BCP</button>
+                        </div>
+
+                        <div id="payment-yape" class="payment-info-content active">
+                            <p>Escanea el código QR o realiza el envío al número:</p>
+                            <p class="payment-detail"><strong>987 654 321</strong></p>
+                            <p class="payment-holder">Titular: FisioHome SAC</p>
+                            <div class="qr-placeholder">[Código QR de Yape/Plin]</div>
+                        </div>
+
+                        <div id="payment-bcp" class="payment-info-content">
+                            <p>Realiza una transferencia a la siguiente cuenta corriente:</p>
+                            <p class="payment-detail">Cuenta: <strong>191-XXXXXXXX-X-XX</strong></p>
+                            <p class="payment-detail">CCI: <strong>002-191XXXXXXXXXX-XX</strong></p>
+                            <p class="payment-holder">Titular: FisioHome SAC</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group upload-section">
+                        <label for="voucher">Sube la captura de pantalla de tu comprobante (Voucher) *</label>
+                        <input type="file" id="voucher" name="comprobante" accept="image/*" required>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="btn-prev" onclick="prevStep(4, 3)">Atrás</button>
+                        <button type="submit" class="btn-submit">Enviar Solicitud de Reserva</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
