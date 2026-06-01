@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kino-Nervia | Fisioterapia & Bienestar Premium a Domicilio</title>
+    <!-- Cargar FontAwesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <!-- Cargar FontAwesome para los iconos (Checkmark verde) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <!-- Header / Navbar -->
     <header class="navbar">
         <div class="logo-container">
-            <!-- Actualización del nombre de marca Kino-Nervia -->
             <span class="brand-name">KINO<span class="accent">NERVIA</span></span>
         </div>
         <nav>
@@ -24,9 +23,8 @@
         </nav>
     </header>
 
-    <!-- Hero Section con Degradado Premium (Estilo image_1.png) -->
+    <!-- Hero Section con Degradado Premium -->
     <section id="inicio" class="hero">
-        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Recupera tu bienestar, reserva hoy</h1>
             <p>Kino-Nervia te lleva terapeutas especializados, equipos avanzados de electroestimulación y aceites premium directo a tu puerta.</p>
@@ -34,13 +32,13 @@
         </div>
     </section>
 
-    <!-- Sistema de Reserva de Citas (Formulario Progresivo) -->
+    <!-- Sistema de Reserva de Citas -->
     <section id="reserva" class="booking-section">
         <div class="container">
             <h2>Sistema de Reserva de Citas</h2>
             <p class="subtitle">Completa los pasos para asegurar tu atención profesional</p>
 
-            <!-- Progress Bar (Parte del flujo operativo) -->
+            <!-- Progress Bar -->
             <div class="progress-bar">
                 <div class="step active" id="p-step-1"><span>1</span> Datos</div>
                 <div class="step" id="p-step-2"><span>2</span> Servicio</div>
@@ -48,13 +46,37 @@
                 <div class="step" id="p-step-4"><span>4</span> Garantía</div>
             </div>
 
-            <!-- Formulario (con lógica para Formspree que implementaremos luego) -->
             <form id="bookingForm" enctype="multipart/form-data">
                 
                 <!-- PASO 1: Datos Personales y Seguridad -->
                 <div class="form-step step-1 active" id="step-1">
                     <h3>1. Información del Paciente y Ubicación</h3>
-                    <!-- ... (campos idénticos al código anterior, no cambiarlos) ... -->
+                    <div class="form-group">
+                        <label for="fullName">Nombre Completo *</label>
+                        <input type="text" id="fullName" name="nombre" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dni">DNI / CE *</label>
+                            <input type="text" id="dni" name="dni" maxlength="12" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono Móvil *</label>
+                            <input type="tel" id="phone" name="telefono" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Dirección Exacta (Destino del servicio) *</label>
+                        <input type="text" id="address" name="direccion" placeholder="Av, Calle, Número, Dpto..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reference">Referencia de Ubicación *</label>
+                        <input type="text" id="reference" name="referencia" placeholder="Frente a parque, portón verde, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="condition">Descripción de la dolencia o motivo de consulta *</label>
+                        <textarea id="condition" name="condicion_medica" rows="3" placeholder="Ej: Dolor lumbar crónico, descarga muscular post-maratón..." required></textarea>
+                    </div>
                     <div class="form-buttons">
                         <button type="button" class="btn-next" onclick="nextStep(1, 2)">Siguiente</button>
                     </div>
@@ -63,7 +85,32 @@
                 <!-- PASO 2: Selección de Servicio -->
                 <div class="form-step step-2" id="step-2">
                     <h3>2. Selecciona tu Terapia</h3>
-                    <!-- ... (campos idénticos al código anterior, no cambiarlos) ... -->
+                    <div class="services-grid">
+                        <label class="service-card">
+                            <input type="radio" name="servicio" value="Fisioterapia Integral" data-price="140" onchange="calculatePrices()" required>
+                            <div class="card-content">
+                                <h4>Fisioterapia Integral</h4>
+                                <p>Evaluación, terapia manual y electroestimulación (TENS/EMS) avanzada.</p>
+                                <span class="price">S/ 140.00</span>
+                            </div>
+                        </label>
+                        <label class="service-card">
+                            <input type="radio" name="servicio" value="Descarga Muscular" data-price="160" onchange="calculatePrices()">
+                            <div class="card-content">
+                                <h4>Descarga Deportiva Premium</h4>
+                                <p>Especial para atletas. Incluye masaje profundo, aceites analgésicos y electrodos.</p>
+                                <span class="price">S/ 160.00</span>
+                            </div>
+                        </label>
+                        <label class="service-card">
+                            <input type="radio" name="servicio" value="Masaje Relajante" data-price="120" onchange="calculatePrices()">
+                            <div class="card-content">
+                                <h4>Masaje Descontracturante & Relax</h4>
+                                <p>Terapia con aceites esenciales naturales para liberación de estrés acumulado.</p>
+                                <span class="price">S/ 120.00</span>
+                            </div>
+                        </label>
+                    </div>
                     <div class="form-buttons">
                         <button type="button" class="btn-prev" onclick="prevStep(2, 1)">Atrás</button>
                         <button type="button" class="btn-next" onclick="nextStep(2, 3)">Siguiente</button>
@@ -73,7 +120,24 @@
                 <!-- PASO 3: Fecha y Hora -->
                 <div class="form-step step-3" id="step-3">
                     <h3>3. Fecha y Horario de Atención</h3>
-                    <!-- ... (campos idénticos al código anterior, no cambiarlos) ... -->
+                    <p class="info-text">Tomamos un margen de tiempo entre citas para garantizar la puntualidad ante el tráfico urbano.</p>
+                    <br>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Seleccionar Fecha *</label>
+                            <input type="date" id="date" name="fecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Horarios Disponibles *</label>
+                            <select id="time" name="hora" required>
+                                <option value="">-- Selecciona un bloque --</option>
+                                <option value="08:00 - 10:00">08:00 AM - 10:00 AM</option>
+                                <option value="10:30 - 12:30">10:30 AM - 12:30 PM</option>
+                                <option value="14:00 - 16:00">02:00 PM - 04:00 PM</option>
+                                <option value="16:30 - 18:30">04:30 PM - 06:30 PM</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-buttons">
                         <button type="button" class="btn-prev" onclick="prevStep(3, 2)">Atrás</button>
                         <button type="button" class="btn-next" onclick="nextStep(3, 4)">Siguiente</button>
@@ -83,93 +147,107 @@
                 <!-- PASO 4: Depósito de Garantía del 50% -->
                 <div class="form-step step-4" id="step-4">
                     <h3>4. Confirmación y Garantía de Reserva</h3>
-                    <!-- ... (campos idénticos al código anterior, no cambiarlos) ... -->
+                    <div class="summary-box">
+                        <p><strong>Servicio seleccionado:</strong> <span id="summary-service">-</span></p>
+                        <p><strong>Costo Total:</strong> <span id="summary-total">S/ 0.00</span></p>
+                        <div class="alert-advance">
+                            <p><strong>Adelanto requerido (50%):</strong> <span id="summary-advance" class="highlight">S/ 0.00</span></p>
+                            <p class="sub-alert">Para asegurar la logística de traslado de equipos, se requiere el adelanto. El saldo se cancela al finalizar la terapia.</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <h4>Métodos de Pago Autorizados</h4>
+                        <div class="methods-tabs">
+                            <button type="button" class="tab-btn active" onclick="switchPayment('yape')">Yape / Plin</button>
+                            <button type="button" class="tab-btn" onclick="switchPayment('bcp')">Banco BCP</button>
+                        </div>
+
+                        <div id="payment-yape" class="payment-info-content active">
+                            <p>Realiza el envío al número:</p>
+                            <p class="payment-detail"><strong>987 654 321</strong></p>
+                            <p class="payment-holder">Titular: Kino-Nervia</p>
+                        </div>
+
+                        <div id="payment-bcp" class="payment-info-content">
+                            <p>Realiza una transferencia a la cuenta corriente:</p>
+                            <p class="payment-detail">Cuenta: <strong>191-XXXXXXXX-X-XX</strong></p>
+                            <p class="payment-detail">CCI: <strong>002-191XXXXXXXXXX-XX</strong></p>
+                            <p class="payment-holder">Titular: Kino-Nervia</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group upload-section">
+                        <br>
+                        <label for="voucher">Sube la captura de pantalla de tu comprobante (Voucher) *</label>
+                        <input type="file" id="voucher" name="comprobante" accept="image/*" required>
+                    </div>
+
                     <div class="form-buttons">
                         <button type="button" class="btn-prev" onclick="prevStep(4, 3)">Atrás</button>
-                        <button type="submit" class="btn-submit">Enviar Solicitud de Reserva</button>
+                        <button type="submit" class="btn-submit">Enviar Solicitud</button>
                     </div>
                 </div>
 
             </form>
         </div>
-    </section> <!-- Fin Sección de Reserva -->
+    </section>
 
-    <!-- SECCIÓN NUEVA: Tu Proceso de Recuperación Paso a Paso (Estilo image_2.png) -->
+    <!-- SECCIÓN: Tu Proceso de Recuperación Paso a Paso -->
     <section id="proceso" class="process-section">
         <div class="container">
             <h2>Tu proceso de recuperación, paso a paso</h2>
             <p class="subtitle">Cada paso está pensado para cuidar tu bienestar.</p>
 
-            <!-- Línea de Tiempo Progresiva (Estilo image_3.png) -->
             <div class="timeline-container">
                 <div class="timeline-line"></div>
                 
-                <!-- Paso 1: Agenda tu cita -->
                 <div class="timeline-step step-complete">
                     <div class="step-icon">
-                        <!-- Reemplazar con el icono de Calendario/Lápiz de image_2.png -->
                         <i class="fa-regular fa-calendar-check"></i>
-                        <div class="check-mark">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                        <div class="check-mark"><i class="fa-solid fa-check"></i></div>
                     </div>
                     <p>Agenda tu cita</p>
                 </div>
 
-                <!-- Paso 2: Habla con tu especialista -->
                 <div class="timeline-step step-complete">
                     <div class="step-icon">
-                        <!-- Reemplazar con el icono de Perfil/Chat de image_2.png -->
                         <i class="fa-solid fa-comments"></i>
-                        <div class="check-mark">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                        <div class="check-mark"><i class="fa-solid fa-check"></i></div>
                     </div>
                     <p>Habla con tu especialista</p>
                 </div>
 
-                <!-- Paso 3: Inicia tu terapia física -->
                 <div class="timeline-step step-complete">
                     <div class="step-icon">
-                        <!-- Reemplazar con el icono de Figura/Terapia de image_2.png -->
                         <i class="fa-solid fa-person-walking-with-cane"></i>
-                        <div class="check-mark">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                        <div class="check-mark"><i class="fa-solid fa-check"></i></div>
                     </div>
                     <p>Inicia tu terapia física y rehabilitación</p>
                 </div>
 
-                <!-- Paso 4: Seguimos tus avances -->
                 <div class="timeline-step step-complete">
                     <div class="step-icon">
-                        <!-- Reemplazar con el icono de Doctor de image_2.png -->
                         <i class="fa-solid fa-user-doctor"></i>
-                        <div class="check-mark">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                        <div class="check-mark"><i class="fa-solid fa-check"></i></div>
                     </div>
                     <p>Seguimos tus avances</p>
                 </div>
 
-                <!-- Paso 5: Recupera tu bienestar -->
                 <div class="timeline-step step-complete">
                     <div class="step-icon">
-                        <!-- Reemplazar con el icono de Estrellas/Grupo de image_2.png -->
                         <i class="fa-solid fa-star-of-life"></i>
-                        <div class="check-mark">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                        <div class="check-mark"><i class="fa-solid fa-check"></i></div>
                     </div>
                     <p>Recupera tu bienestar</p>
                 </div>
             </div>
         </div>
-    </section> <!-- Fin Sección de Proceso -->
+    </section>
 
-    <!-- Footer Simple -->
+    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2023 Kino-Nervia. Servicio de fisioterapia premium a domicilio.</p>
+        <p>&copy; 2026 Kino-Nervia. Servicio de fisioterapia premium a domicilio.</p>
     </footer>
 
     <script src="script.js"></script>
